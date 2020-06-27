@@ -1,0 +1,88 @@
+---
+title: "Exam2Gov355"
+author: "Claire Sheppard"
+date: "6/26/2020"
+output:
+  word_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r clear the environment}
+#Clear environment
+rm(list=ls())
+
+```
+
+```{r Load inequality dataset}
+#Load the inequality dataset into R
+inequality_data <- readxl::read_xlsx("inequality.xlsx")
+```
+
+```{r view its class}
+#view its class
+class(inequality_data)
+```
+
+```{r View data within dataframe}
+#view data within dataframe
+#Because the data reflects the same time period, this would be a cross sectional dataset
+head(inequality_data)
+```
+
+```{r View structure just to double check}
+#view structure just to double check
+str(inequality_data)
+```
+
+```{r subset command to provide inequality_gini scores for Denmark and Sweden 4 }
+# The data frame inequality_gini Corresponds to the inequality Gini index, which “measures the extent to which the distribution of income (or, in some cases, consumption expenditure) among individuals or households within an economy deviates from a perfectly equal distribution. 
+inequality_data[complete.cases(inequality_data),]
+inequality_data
+
+```
+```{r question 5 Brazil }
+```
+
+```{r Is it better to have a high or a low inequality_gini scores}
+#It is better to have a lower inequality_gini score
+```
+
+```{r Use head command to view dataframe}
+head(inequality_data)
+```
+
+```{r accent.remove the accent on Belarus, apply and run head again}
+#remove accents
+remove.accents <- function(s) {
+# 1 character substitutions
+old1 <- "ús"
+new1 <- "us"
+s1 <- chartr(old1, new1, s)
+}
+#finish removal
+inequality_data$country = remove.accents(inequality_data$country)
+```
+
+```{r Sort by countries with lowest inequality_gini scores}
+decreasing<- sort(inequality_data$inequality_gini,decreasing = FALSE)
+head(decreasing,5)
+```
+
+```{r mean inequality_gini score}
+inequality_data2 <- inequality_data[complete.cases(inequality_data),]
+mean = mean(inequality_data2$inequality_gini)
+mean
+```
+```{r use ifelse }
+```
+
+```{r bad }
+#I truly am an intelligent being. I went through 6-7-8 AND 3 in the past few days. Lost 8 hours after my laptop crashed trying to reinstall everything and recreate notes. Hoping this works at least for partial credit again. Sadly I read the questions and thought, Yeah I know this :( 
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
